@@ -82,7 +82,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Out = function Out() {
   _classCallCheck(this, Out);
 
-  this.name = 'hello world ah! 123';
+  this.name = 'hello world ah! 123...';
 };
 
 var o = new Out();
