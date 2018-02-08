@@ -9,7 +9,7 @@ gulp.task('serve', (cb) => {
   let server = liveserver.new(['--harmony', 'server/bin/www'])
   server.start()
 
-  gulp.watch(['server/public/**/*.js', 'server/views/**/*.ejs'], (file) => {
+  gulp.watch(['server/public/**/*.css', 'server/public/**/*.js', 'server/views/**/*.ejs'], (file) => {
     server.notify.apply(server, [file])
   })
 
