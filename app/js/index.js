@@ -1,6 +1,8 @@
+import './class/解构赋值'
+
 class Out {
   constructor() {
-    this.name = 'hello world ah! 123...'
+    this.name = 'hello world ah! 123'
   }
 }
 
