@@ -79,7 +79,8 @@ module.exports = __webpack_require__(1);
 
 __webpack_require__(2);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } // import 'babel-polyfill' // es6 API转换器
+
 
 var Out = function Out() {
   _classCallCheck(this, Out);
@@ -98,72 +99,137 @@ document.body.textContent = o.name;
 "use strict";
 
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-{
-  var a = 1;
-  var b = 2;
-  var _ref = [b, a];
-  a = _ref[0];
-  b = _ref[1];
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  console.log(a, b);
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 {
-  var _a = void 0,
-      _b = void 0;
-  var _a$b = { a: 1, b: 2 };
-  _a = _a$b.a;
-  _b = _a$b.b;
+  var Parent = function Parent() {
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'parent';
 
-  console.log(_a, _b);
-}
+    _classCallCheck(this, Parent);
 
-{
-  var fn = function fn() {
-    return [1, 2, 3, 4, 5];
+    this.name = name;
   };
 
-  var _fn = fn(),
-      _fn2 = _slicedToArray(_fn, 5),
-      _a2 = _fn2[0],
-      _b2 = _fn2[4];
-
-  console.log(_a2, _b2);
+  var parent = new Parent();
+  console.log(parent);
 }
 
+// 继承
 {
-  var _fn3 = function _fn3() {
-    return [1, 2, 3, 4, 5];
-  };
+  var _Parent = function () {
+    function _Parent() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'parent';
 
-  var _fn4 = _fn3(),
-      _fn5 = _toArray(_fn4),
-      _a3 = _fn5[0],
-      _b3 = _fn5.slice(1);
+      _classCallCheck(this, _Parent);
 
-  console.log(_a3, _b3);
+      this.name = name;
+    }
+
+    _createClass(_Parent, [{
+      key: 'getName',
+      value: function getName() {
+        console.log(this.name);
+      }
+    }]);
+
+    return _Parent;
+  }();
+
+  var Child = function (_Parent2) {
+    _inherits(Child, _Parent2);
+
+    function Child() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'child';
+
+      _classCallCheck(this, Child);
+
+      var _this = _possibleConstructorReturn(this, (Child.__proto__ || Object.getPrototypeOf(Child)).call(this, name));
+
+      _this.type = 'child';
+      return _this;
+    }
+
+    return Child;
+  }(_Parent);
+
+  var child = new Child('job');
+  console.log(child);
+  child.getName();
 }
 
+// getter、setter属性
 {
-  var data = {
-    title: 'abc',
-    test: [{
-      title: 'test',
-      desc: 'desc'
-    }]
+  var _Parent3 = function () {
+    function _Parent3() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'parent';
+
+      _classCallCheck(this, _Parent3);
+
+      this.name = name;
+    }
+
+    _createClass(_Parent3, [{
+      key: 'longName',
+      get: function get() {
+        return this.name + ' -name';
+      },
+      set: function set(name) {
+        this.name = name;
+      }
+    }]);
+
+    return _Parent3;
+  }();
+
+  var _parent = new _Parent3();
+  console.log(_parent.longName);
+
+  _parent.longName = 'change';
+  console.log(_parent.longName);
+}
+
+// 静态方法
+{
+  var _Parent4 = function () {
+    function _Parent4() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'parent';
+
+      _classCallCheck(this, _Parent4);
+
+      this.name = name;
+    }
+
+    _createClass(_Parent4, null, [{
+      key: 'getCode',
+      value: function getCode() {
+        console.log('code');
+      }
+    }]);
+
+    return _Parent4;
+  }();
+
+  _Parent4.getCode();
+}
+
+// 静态属性
+{
+  var _Parent5 = function _Parent5() {
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'parent';
+
+    _classCallCheck(this, _Parent5);
+
+    this.name = name;
   };
 
-  var title1 = data.title,
-      _data$test = _slicedToArray(data.test, 1),
-      _data$test$ = _data$test[0],
-      title2 = _data$test$.title,
-      desc = _data$test$.desc;
-
-  console.log(title1, title2, desc);
+  _Parent5.code = '123456';
+  console.log(_Parent5.code);
 }
 
 /***/ })

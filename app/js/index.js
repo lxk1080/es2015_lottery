@@ -1,4 +1,5 @@
-import './class/解构赋值'
+// import 'babel-polyfill' // es6 API转换器
+import './class/类与对象'
 
 class Out {
   constructor() {
