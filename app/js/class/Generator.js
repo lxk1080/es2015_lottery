@@ -90,5 +90,28 @@
 
 // 长轮询
 {
+  let ajax = function* () {
+    yield new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        resolve({code: 0})
+      }, 20)
+    })
+  }
 
+  let pull = function () {
+    let gen = ajax()
+    let step = gen.next()
+    step.value.then(function(data) {
+      if (data.code === 0) {
+        console.log(data)
+      } else {
+        setTimeout(function () {
+          console.log('pulling...')
+          pull()
+        }, 1000)
+      }
+    })
+  }
+
+  pull()
 }

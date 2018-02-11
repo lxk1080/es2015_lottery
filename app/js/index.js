@@ -1,5 +1,5 @@
 import 'babel-polyfill' // es6 API转换器
-import './class/Generator'
+import './class/module模块化'
 
 class Out {
   constructor() {
