@@ -1,5 +1,5 @@
-// import 'babel-polyfill' // es6 API转换器
-import './class/类与对象'
+import 'babel-polyfill' // es6 API转换器
+import './class/Generator'
 
 class Out {
   constructor() {
@@ -9,4 +9,6 @@ class Out {
 
 let o = new Out()
 
-document.body.textContent = o.name
+let p = document.createElement('p')
+p.textContent = o.name
+document.body.appendChild(p)
